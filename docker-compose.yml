@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  ng:
+    container_name: ng
+    build: .
+    ports:
+      - "8080:80"
