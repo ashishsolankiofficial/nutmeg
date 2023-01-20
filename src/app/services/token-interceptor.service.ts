@@ -12,7 +12,6 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private authService: AuthService) { }
 
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const currentUser = this.authService.currentUserValue;
@@ -40,30 +39,17 @@ export class TokenInterceptorService implements HttpInterceptor {
     );
   }
 
-  private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-
   handleTokenRefresh(request: HttpRequest<any>, next: HttpHandler) {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-      this.refreshTokenSubject.next(null);
-      return this.authService.refreshToken().pipe(
-        switchMap((response: any) => {
-          this.isRefreshing = false;
-          this.refreshTokenSubject.next(response.access);
-          return next.handle(this.addToken(request, response.access));
-        }));
-    } else {
-
-      return this.refreshTokenSubject.pipe(
-        filter(token => token != null),
-        take(1),
-        switchMap(jwt => {
-          return next.handle(this.addToken(request, jwt));
-        }));
-    }
+    this.refreshTokenSubject.next(null);
+    return this.authService.refreshToken().pipe(
+      switchMap((response: any) => {
+        this.refreshTokenSubject.next(response.access);
+        return next.handle(this.addToken(request, response.access));
+      }));
   }
+
 
   private addToken(request: HttpRequest<any>, token: string | undefined) {
     return request.clone({
