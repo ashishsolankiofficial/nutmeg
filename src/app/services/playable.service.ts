@@ -11,6 +11,10 @@ export class PlayableService {
   constructor(private http: HttpClient) { }
 
   getSports() {
-    return this.http.get(environment.apiUrl + environment.sportsUrl).pipe(shareReplay())
+    return this.http.get(environment.apiUrl + environment.upcommingPlayableUrl).pipe(shareReplay())
+  }
+
+  getMatches() {
+    return this.http.get(environment.apiUrl + environment.matchesUrl).pipe(shareReplay())
   }
 }

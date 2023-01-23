@@ -7,8 +7,8 @@ export const environment = {
   apiUrl: "http://localhost:8000/",
   loginUrl: "auth/login/",
   refreshUrl: "auth/token-refresh/",
-
-  sportsUrl: "playable/sports/"
+  upcommingPlayableUrl: "playable/upcomming/",
+  matchesUrl: "playable/matches/",
 
 };
 

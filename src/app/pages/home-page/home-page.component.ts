@@ -11,14 +11,11 @@ import { PlayableService } from 'src/app/services/playable.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private authservice: AuthService, private playableService: PlayableService) { }
+  constructor(private authservice: AuthService) { }
 
   sports: any;
 
   ngOnInit(): void {
-    this.playableService.getSports().subscribe(response => {
-
-    })
   }
 
   logoutUser() {

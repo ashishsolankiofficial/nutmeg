@@ -1,0 +1,35 @@
+<div>
+  <div class="m-3">
+    <div *ngFor="let sport of sports">
+      <div class="sport-heading">
+        {{ sport.name | uppercase }}
+      </div>
+      <div *ngFor="let match of sport.match">
+        <div class="match-card">
+          <div class="match-team-row">
+            <img class="team-image"
+              src="https://cdn.dribbble.com/users/1192538/avatars/small/6255455d9c82d20c0ba2da398ab98486.png?1627450781">
+            <div class="team-name-heading">
+              {{match.teamA.name}}
+            </div>
+            <div class="team-name-vs">Vs</div>
+            <img class="team-image"
+              src="https://cdn.dribbble.com/users/1192538/avatars/small/6255455d9c82d20c0ba2da398ab98486.png?1627450781">
+            <div class="team-name-heading">
+              {{match.teamB.name}}
+            </div>
+            <div class="time-counter">
+              Time left: {{match.match_start_time - now}}
+            </div>
+          </div>
+          <div class="match-name-heading">
+            {{match.name}}
+          </div>
+          <div class="match-name-heading">
+            {{match.match_start_time |date }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
