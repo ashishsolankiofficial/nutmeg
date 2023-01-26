@@ -7,7 +7,7 @@ import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-p
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
-import { SportsPageComponent } from './pages/sports-page/sports-page.component';
+import { UpcommingPageComponent } from './pages/upcomming-page/upcomming-page.component';
 
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [{
       path: '',
-      component: SportsPageComponent
+      component: UpcommingPageComponent
     },
     {
       path: 'bets',

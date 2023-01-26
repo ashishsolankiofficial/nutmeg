@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PlayableService } from 'src/app/services/playable.service';
 
 @Component({
-  selector: 'app-sports-page',
-  templateUrl: './sports-page.component.html',
-  styleUrls: ['./sports-page.component.scss']
+  selector: 'app-upcomming-page',
+  templateUrl: './upcomming-page.component.html',
+  styleUrls: ['./upcomming-page.component.scss']
 })
-export class SportsPageComponent implements OnInit {
+export class UpcommingPageComponent implements OnInit {
 
   upcomming: any;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BetService } from 'src/app/services/bet.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,7 +19,7 @@ export class PlacebetPageComponent implements OnInit {
   selectedBet: number = 100;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
 
-  constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.match_id = this.route.snapshot.paramMap.get('ext_id') || '';
@@ -27,10 +27,12 @@ export class PlacebetPageComponent implements OnInit {
       this.match = resp
     })
     this.betService.getBet(this.match_id).subscribe((resp: any) => {
-      this.bet_id = resp['ext_id']
-      this.bet_list = resp['placed_bets']
-      this.prev_bet_exist = true;
-      this.user_bet = this.bet_list.filter((u: any) => u.user_id == this.userService.getUser())[0]
+      if (resp['placed_bets']) {
+        this.bet_id = resp['ext_id']
+        this.bet_list = resp['placed_bets']
+        this.user_bet = this.bet_list.filter((u: any) => u.user_id == this.userService.getUser())[0]
+        this.prev_bet_exist = true;
+      }
     })
   }
 
@@ -43,9 +45,13 @@ export class PlacebetPageComponent implements OnInit {
       }]
     }
     if (this.prev_bet_exist) {
-      this.betService.placeBet(bet_details, this.bet_id).subscribe()
+      this.betService.placeBet(bet_details, this.bet_id).subscribe(resp => {
+        this.router.navigate(['bets'])
+      })
     } else {
-      this.betService.placeBet(bet_details).subscribe()
+      this.betService.placeBet(bet_details).subscribe(resp => {
+        this.router.navigate(['bets'])
+      })
     }
   }
 

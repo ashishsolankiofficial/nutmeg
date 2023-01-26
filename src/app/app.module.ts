@@ -11,7 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { HeaderComponent } from './layout/header/header/header.component';
 import { FooterComponent } from './layout/footer/footer/footer.component';
-import { SportsPageComponent } from './pages/sports-page/sports-page.component';
+import { UpcommingPageComponent } from './pages/upcomming-page/upcomming-page.component';
 import { BetsPageComponent } from './pages/bets-page/bets-page.component';
 import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-page.component';
 import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
@@ -24,7 +24,7 @@ import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.compo
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
-    SportsPageComponent,
+    UpcommingPageComponent,
     BetsPageComponent,
     LeaderboardPageComponent,
     PlacebetPageComponent
