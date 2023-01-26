@@ -4,26 +4,37 @@
     padding: 20px;
 }
 
-.match-card{
+.card-link{
+    text-decoration: none;
+    color: black;
+}
+
+.match-detail-card{
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
+    cursor:pointer
 }
 
-.match-team-row{
+.match-detail-card:hover {
+    background-color: #c6c6c6;
+  }
+
+.team-detail-row{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.team-name-heading{
-    font-weight: 300;
+.team-name{
+    font-weight: 500;
 }
 
-.team-name-vs{
+.team-vs-text{
     font-weight: 700;
     margin: 0px 20px ;
+    color: #666666;
 }
 
 .team-image{
@@ -33,12 +44,14 @@
     border-radius: 20px;
 }
 
-.time-counter{
-    position: absolute;
-    right: 100px;
+.match-name{
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    color: #666666;
 }
 
-.match-name-heading{
+.match-time{
     display: flex;
     justify-content: center;
     font-size: 12px;

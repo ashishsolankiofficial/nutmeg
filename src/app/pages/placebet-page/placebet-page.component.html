@@ -1,0 +1,81 @@
+<div class="m-3 bet-detail-card" *ngIf="user_bet">
+  Your Bet is On {{user_bet.team_name}} for {{user_bet.amount}}
+</div>
+<div class="m-3 match-detail-card">
+  <div class="match-detail-row">
+    <div class="match-name">
+      {{match.name}} ({{match.tournament_name}})
+    </div>
+    <div class="match-time">
+      {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
+    </div>
+  </div>
+  <div class="bet-amount-row">
+    <div class="bet-choose-text">Choose Bet Amount</div>
+    <select class="form-select bet-amount-select" [(ngModel)]="selectedBet">
+      <option [ngValue]="(i+1)*50" *ngFor="let item of [].constructor(10); let i = index">
+        {{(i+1)*50}}
+      </option>
+    </select>
+  </div>
+  <div class="team-detail-row">
+    <div class="team-detail-column">
+      <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
+      <div class="team-name">
+        {{match.teamA.name}}
+      </div>
+      <button class="btn btn-primary" (click)="placeBet(match.teamA)">{{match.teamA.name}} will win</button>
+      <div class=" est-winning-text">Estimated Winnings: {{selectedBet}}
+      </div>
+    </div>
+    <div class="versus-text">Vs</div>
+    <div class="team-detail-column">
+      <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
+      <div class="team-name">
+        {{match.teamB.name}}
+      </div>
+      <button class="btn btn-primary" (click)="placeBet(match.teamB)">{{match.teamB.name}} will win</button>
+      <div class="est-winning-text">Estimated Winnings: {{selectedBet}}</div>
+    </div>
+  </div>
+</div>
+<div class="m-3 bet-detail-card" *ngIf="prev_bet_exist">
+  <div class="bet-detail-column">
+    <div class="bet-detail-heading">{{match.teamA.name}} Bets</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bet of bet_list; let i=index;">
+          <th>{{i + 1}}</th>
+          <td>{{bet.user_name}}</td>
+          <td>{{bet.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bet-detail-column">
+    <div class="bet-detail-heading">{{match.teamB.name}} Bets</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bet of bet_list; let i=index;">
+          <th>{{i + 1}}</th>
+          <td>{{bet.user_name}}</td>
+          <td>{{bet.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

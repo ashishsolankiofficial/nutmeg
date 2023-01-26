@@ -6,6 +6,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-page.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
 import { SportsPageComponent } from './pages/sports-page/sports-page.component';
 
 
@@ -33,6 +34,11 @@ const routes: Routes = [
     {
       path: 'leaderboard',
       component: LeaderboardPageComponent
+    },
+    {
+      path: 'palcebet/:ext_id',
+      component: PlacebetPageComponent
+
     }
     ]
   },

@@ -8,15 +8,14 @@ import { PlayableService } from 'src/app/services/playable.service';
 })
 export class SportsPageComponent implements OnInit {
 
-  sports: any;
-  matches: any;
-  now = new Date().getTime()
+  upcomming: any;
+  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
 
   constructor(private playableService: PlayableService) { }
 
   ngOnInit(): void {
-    this.playableService.getSports().subscribe(response => {
-      this.sports = response
+    this.playableService.getUpcomming().subscribe(response => {
+      this.upcomming = response
     })
   }
 

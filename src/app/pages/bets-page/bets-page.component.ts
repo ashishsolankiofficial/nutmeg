@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BetService } from 'src/app/services/bet.service';
 
 @Component({
   selector: 'app-bets-page',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BetsPageComponent implements OnInit {
 
-  constructor() { }
+  yourBets: any;
+
+  constructor(private betService: BetService) { }
 
   ngOnInit(): void {
+    this.betService.getBetList().subscribe((resp: any) => {
+      this.yourBets = resp['results']
+    })
   }
+
+
 
 }
