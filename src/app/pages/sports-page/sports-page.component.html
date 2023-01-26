@@ -1,0 +1,32 @@
+<div class="m-3">
+  <div *ngFor="let sport of upcomming">
+    <div class="sport-heading">
+      {{ sport.name | uppercase }}
+    </div>
+    <div *ngFor="let match of sport.match">
+      <a class="card-link" [routerLink]="['/palcebet/' ,match.ext_id]">
+        <div class="match-detail-card">
+          <div class="team-detail-row">
+            <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
+            <div class="team-name">
+              {{match.teamA.name}}
+            </div>
+            <div class="team-vs-text">Vs</div>
+            <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
+            <div class="team-name">
+              {{match.teamB.name}}
+            </div>
+          </div>
+          <div class="match-detail-row">
+            <div class="match-name">
+              {{match.name}}
+            </div>
+            <div class="match-time">
+              {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
