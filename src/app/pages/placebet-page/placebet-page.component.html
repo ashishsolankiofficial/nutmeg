@@ -1,5 +1,5 @@
-<div class="m-3 bet-detail-card" *ngIf="user_bet">
-  Your Bet is On {{user_bet.team_name}} for {{user_bet.amount}}
+<div class="m-3 bet-detail-card" *ngIf="userBet">
+  Your Bet is On {{userBet.team_name}} for {{userBet.amount}}
 </div>
 <div class="m-3 match-detail-card">
   <div class="match-detail-row">
@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<div class="m-3 bet-detail-card" *ngIf="prev_bet_exist">
+<div class="m-3 bet-detail-card" *ngIf="prevBetExist">
   <div class="bet-detail-column">
     <div class="bet-detail-heading">{{match.teamA.name}} Bets</div>
     <table class="table">
@@ -51,7 +51,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bet of bet_list; let i=index;">
+        <tr *ngFor="let bet of teamABets; let i=index;">
           <th>{{i + 1}}</th>
           <td>{{bet.user_name}}</td>
           <td>{{bet.amount}}</td>
@@ -70,7 +70,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bet of bet_list; let i=index;">
+        <tr *ngFor="let bet of teamBBets; let i=index;">
           <th>{{i + 1}}</th>
           <td>{{bet.user_name}}</td>
           <td>{{bet.amount}}</td>
