@@ -13,8 +13,6 @@ export class HomePageComponent implements OnInit {
 
   constructor(private authservice: AuthService) { }
 
-  sports: any;
-
   ngOnInit(): void {
   }
 

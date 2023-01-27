@@ -13,7 +13,7 @@ export class BetsPageComponent implements OnInit {
   constructor(private betService: BetService) { }
 
   ngOnInit(): void {
-    this.betService.getBetList().subscribe((resp: any) => {
+    this.betService.getYourBetList().subscribe((resp: any) => {
       this.yourBets = resp['results']
     })
   }

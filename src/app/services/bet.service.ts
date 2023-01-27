@@ -14,13 +14,12 @@ export class BetService {
     return this.http.get(environment.apiUrl + environment.matchUrl + match_id).pipe(shareReplay())
   }
 
-  getBetList() {
-    return this.http.get(environment.apiUrl + environment.betUrl).pipe(shareReplay())
+  getYourBetList() {
+    return this.http.get(environment.apiUrl + environment.matchBetsUrl).pipe(shareReplay())
   }
 
-
-  getBet(match_id: string) {
-    return this.http.get(environment.apiUrl + environment.betUrl + match_id).pipe(shareReplay())
+  getBet(betId: string | undefined) {
+    return this.http.get(environment.apiUrl + environment.betUrl + betId).pipe(shareReplay())
   }
 
   placeBet(betDetails: any, betId?: string) {
