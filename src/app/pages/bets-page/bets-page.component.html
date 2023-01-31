@@ -1,9 +1,30 @@
-<div class="m-3 match-detail-card">
-  <div class="match-detail-row">
-    <div class="match-name">
-      {{yourBets}}
-    </div>
-    <div class="match-time">
-    </div>
+<div class="m-3">
+  <div *ngFor="let match of yourBets">
+    <a class="card-link" [routerLink]="['/palcebet/' ,match.ext_id]">
+      <div class="match-detail-card">
+        <div class="match-detail-column">
+          <div class="match-name">
+            {{match.name}}({{match.tournament_name}})
+          </div>
+          <div class="match-time">
+            {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
+          </div>
+        </div>
+        <div class="team-detail-column">
+          <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
+          <div class="team-name">
+            {{match.teamA.name}}
+          </div>
+          <div class="team-vs-text">Vs</div>
+          <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
+          <div class="team-name">
+            {{match.teamB.name}}
+          </div>
+        </div>
+        <div class="bet-detail-column">
+          Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
+        </div>
+      </div>
+    </a>
   </div>
 </div>

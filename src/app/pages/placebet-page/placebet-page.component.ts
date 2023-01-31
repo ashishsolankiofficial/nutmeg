@@ -21,6 +21,8 @@ export class PlacebetPageComponent implements OnInit {
   matchId: string | undefined;
   selectedBet: number = 100;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
+  estWinTeamA: number = 0
+  estWinTeamB: number = 0
 
   constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
@@ -42,6 +44,8 @@ export class PlacebetPageComponent implements OnInit {
         this.teamBBets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamB.ext_id)
         this.userBet = this.betList.filter((u: any) => u.user_id == this.userService.getUser())[0]
         this.prevBetExist = true;
+        this.calcEstimatedWinnings()
+        this.calcAllWinnings()
       }
     })
   }
@@ -65,6 +69,34 @@ export class PlacebetPageComponent implements OnInit {
     }
   }
 
+  calcEstimatedWinnings() {
+    let userbetAmountA = 0
+    let userbetAmountB = 0
+    if (this.userBet.team_ext_id == this.match.teamA.ext_id) {
+      userbetAmountA = this.userBet.amount
+    } else {
+      userbetAmountB = this.userBet.amount
+    }
+    let teamATotal = this.teamABets.reduce((a: number, b: any) => { return a + b.amount }, 0) - userbetAmountA
+    let teamBTotal = this.teamBBets.reduce((a: number, b: any) => { return a + b.amount }, 0) - userbetAmountB
+    this.estWinTeamA = this.selectedBet + (teamBTotal * this.selectedBet / (teamATotal + this.selectedBet))
+    this.estWinTeamB = this.selectedBet + (teamATotal * this.selectedBet / (teamBTotal + this.selectedBet))
+  }
 
+  calcAllWinnings() {
+    let teamATotal = this.teamABets.reduce((a: number, b: any) => { return a + b.amount }, 0)
+    let teamBTotal = this.teamBBets.reduce((a: number, b: any) => { return a + b.amount }, 0)
+    this.teamABets = this.teamABets.map((i: any) => {
+      i.est_win = i.amount + (teamBTotal * i.amount / teamATotal)
+      return i
+    })
+    this.teamBBets = this.teamBBets.map((i: any) => {
+      i.est_win = i.amount + (teamATotal * i.amount / teamBTotal)
+      return i
+    })
+  }
 
+  updateBet() {
+    this.calcEstimatedWinnings()
+  }
 }

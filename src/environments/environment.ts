@@ -12,6 +12,7 @@ export const environment = {
   matchUrl: "playable/match/",
   matchBetsUrl: "playable/match-bets/",
   betUrl: "payable/bet/",
+  leaderBoardUrl: "office/leaderboard/",
 };
 
 /*

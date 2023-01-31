@@ -19,4 +19,8 @@ export class UserService {
     return this.http.get(environment.apiUrl + environment.coinsUrl + user_ext_id).pipe(shareReplay())
   }
 
+  getLeaderBoard() {
+    return this.http.get(environment.apiUrl + environment.leaderBoardUrl).pipe(shareReplay())
+  }
+
 }

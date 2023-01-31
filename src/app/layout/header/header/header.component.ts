@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isCollapsed = false;
   constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
