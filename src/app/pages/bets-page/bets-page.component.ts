@@ -9,12 +9,14 @@ import { BetService } from 'src/app/services/bet.service';
 export class BetsPageComponent implements OnInit {
 
   yourBets: any;
+  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
+
 
   constructor(private betService: BetService) { }
 
   ngOnInit(): void {
     this.betService.getYourBetList().subscribe((resp: any) => {
-      this.yourBets = resp['results']
+      this.yourBets = resp
     })
   }
 

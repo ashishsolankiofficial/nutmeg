@@ -1,3 +1,9 @@
 .navbar-brand{
   padding: 5px;
 }
+@media (min-width: 500px){
+  .dropdown{
+    position: absolute;
+    right: 0px;
+  }
+}

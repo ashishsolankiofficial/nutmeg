@@ -1,0 +1,64 @@
+.card-link{
+    text-decoration: none;
+    color: black;
+}
+.match-detail-card{
+    display: flex;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    cursor:pointer
+}
+.match-detail-card:hover {
+    background-color: #c6c6c6;
+}
+.match-detail-column{
+    display: flex;
+    flex-direction: column;
+}
+.match-name{
+    font-size: 12px;
+    color: #666666;
+}
+
+.match-time{
+    font-size: 12px;
+    color: #666666;
+}
+
+.team-detail-column{
+    display: flex;
+    align-items: center;
+}
+
+.team-name{
+    font-weight: 500;
+}
+
+.team-vs-text{
+    font-weight: 700;
+    margin: 0px 20px ;
+    color: #666666;
+}
+
+.team-image{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+.bet-detail-column{
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 500px){
+    .team-detail-column{
+        margin: 10px 0px;
+    }
+    .match-detail-card{
+        flex-direction: column;
+    }
+}

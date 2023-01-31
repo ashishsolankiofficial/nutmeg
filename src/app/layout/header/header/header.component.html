@@ -1,14 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse"
+    data-target="#navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
+    (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarToggler">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <a href="" class="navbar-brand">
     <div>Office JAM</div>
   </a>
-  <div class="collapse navbar-collapse">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" [routerLink]="['/bets']" [routerLinkActive]="['active']">Your
-        Bets</a>
-      <a class="nav-item nav-link" [routerLink]="['/leaderboard']" [routerLinkActive]="['active']">Leaderboard</a>
-    </div>
-  </div>
   <div class="dropdown">
     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">
@@ -18,6 +16,13 @@
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
       <button class="dropdown-item" type="button" (click)="logout()">Profile</button>
       <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarToggler" [ngbCollapse]="isCollapsed">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" [routerLink]="['/bets']" [routerLinkActive]="['active']">Your
+        Bets</a>
+      <a class="nav-item nav-link" [routerLink]="['/leaderboard']" [routerLinkActive]="['active']">Leaderboard</a>
     </div>
   </div>
 </nav>
