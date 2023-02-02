@@ -25,7 +25,6 @@ export class LoginFormComponent implements OnInit {
       let val = this.loginForm.value
       this.authService.login(val.email, val.password).subscribe(
         (response) => {
-          console.log(response)
           this.router.navigateByUrl('');
         },
         (error) => {
