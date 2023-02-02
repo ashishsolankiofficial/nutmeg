@@ -5,13 +5,23 @@
 <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
   <div class="col form-field">
     <label for="emailfield">Email</label>
-    <input type="text" id="emailfield" class="form-control" formControlName="email">
+    <input type="email" id="emailfield" class="form-control" formControlName="email">
+    <div *ngIf="submitted && formControl.email.errors" class="text-danger">
+      <div *ngIf="formControl.email.errors['email']">Email must be valid.</div>
+      <div *ngIf="formControl.email.errors['required']">Email is required.</div>
+    </div>
   </div>
   <div class="col form-field">
     <label for="passwordfield">Password</label>
-    <input type=" text" id="passwordfield" class="form-control" formControlName="password">
+    <input type="password" id="passwordfield" class="form-control" formControlName="password">
+  </div>
+  <div *ngIf="submitted && formControl.password.errors" class="text-danger">
+    <div *ngIf="formControl.password.errors['required']">Password is required.</div>
   </div>
   <div class="col pt-4">
     <button class="btn btn-success" type="submit">Login</button>
+  </div>
+  <div *ngIf="submitted && error" class="text-danger">
+    Check Login Details
   </div>
 </form>

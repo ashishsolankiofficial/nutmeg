@@ -1,0 +1,68 @@
+<div class="container profile-page-container">
+  <div class="row form-label">Edit Profile</div>
+  <div class="row form-body">
+    <form #userProfileForm="ngForm" (ngSubmit)="userProfileForm.valid && submit(userProfileForm.value)">
+      <div class="row form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="first_name">First Name*</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" #first_name="ngModel"
+              [ngModel]="userProfile.first_name" required>
+            <div *ngIf="first_name.invalid && (first_name.touched || userProfileForm.submitted)" class="text-error">
+              First Name
+              is required</div>
+            <div *ngIf="error?.error.first_name" class="text-error">{{error.error.first_name}}</div>
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class="form-group">
+            <label for="last_name">Last Name*</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" #last_name="ngModel"
+              [ngModel]="userProfile.last_name" required>
+            <div *ngIf="last_name.invalid && (last_name.touched|| userProfileForm.submitted)" class="text-error">Last
+              Name is Required
+            </div>
+            <div *ngIf="error?.error.last_name" class="text-error">{{error.error.last_name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="display_name">Display Name*</label>
+            <input type="text" class="form-control" id="display_name" name="display_name" #display_name="ngModel"
+              [ngModel]="userProfile.display_name" required>
+            <div *ngIf="display_name.invalid && (display_name.touched || userProfileForm.submitted) "
+              class="text-error">
+              Display Name is Required</div>
+            <div *ngIf="error?.error.display_name" class="text-error">{{error.error.display_name}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" class="form-control" id="email" name="email" #email="ngModel"
+              [ngModel]="userProfile.email" required disabled>
+            <div *ngIf="email.invalid && (email.touched|| userProfileForm.submitted)" class="text-error">Enter a
+              valid Email</div>
+            <div *ngIf="error?.error.email" class="text-error">{{error.error.email}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="phone_no">Phone Number*</label>
+            <input maxlength="10" minlength="10" type="number" class="form-control" id="phone_no" name="phone_no"
+              #phone_no="ngModel" [ngModel]="userProfile.phone_no" required>
+            <div *ngIf="phone_no.invalid && (phone_no.touched|| userProfileForm.submitted)" class="text-error">Enter a
+              valid Phone number</div>
+            <div *ngIf="error?.error.phone_no" class="text-error">{{error.error.phone_no}}</div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success m-2">Submit</button>
+      <button type="submit" class="btn btn-danger m-2" [routerLink]="['../' + userProfile.ext_id]">Back</button>
+    </form>
+  </div>
+</div>

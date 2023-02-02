@@ -7,6 +7,8 @@ import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-p
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
+import { ProfileFormComponent } from './pages/profile-form/profile-form.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { UpcommingPageComponent } from './pages/upcomming-page/upcomming-page.component';
 
 
@@ -38,6 +40,16 @@ const routes: Routes = [
     {
       path: 'palcebet/:ext_id',
       component: PlacebetPageComponent
+
+    },
+    {
+      path: 'profile/:ext_id',
+      component: ProfilePageComponent
+
+    },
+    {
+      path: 'profile/edit/:ext_id',
+      component: ProfileFormComponent
 
     }
     ]

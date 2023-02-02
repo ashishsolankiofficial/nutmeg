@@ -9,11 +9,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
+  user_id: string | undefined;
+  coins: any
   isCollapsed = false;
+  coinImg = "../../../assets/images/coin.png"
   constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userService.getCoins().subscribe()
+    this.user_id = this.userService.getUser()
+    this.userService.getCoins().subscribe((resp: any) => this.coins = resp['coins'])
   }
 
   logout() {

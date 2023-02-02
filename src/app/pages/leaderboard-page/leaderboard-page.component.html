@@ -1,1 +1,17 @@
-<p>leaderboard-page works!</p>
+<div class="container leaderboard-page-container">
+  <div class="leaderboard-detail-card">
+    <div class="row leaderboard-header">Office Leaderboard</div>
+    <table class="table border">
+      <tbody>
+        <tr *ngFor="let user of leaderBoard">
+          <td class="td-label">
+            {{user.display_name}}
+          </td>
+          <td>
+            {{user.coins}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

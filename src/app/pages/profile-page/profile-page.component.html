@@ -1,0 +1,60 @@
+<div class="container profile-page-container">
+  <div class="match-detail-card">
+    <div class="row profile-header">View Profile</div>
+    <div class="row">
+      <div class="profile-edit-link"><a [routerLink]="['../edit/' + userProfile.ext_id]">Edit Profile Info</a></div>
+    </div>
+    <table class="table border">
+      <tbody>
+        <tr>
+          <td class="td-label">
+            Display Name
+          </td>
+          <td>
+            {{userProfile.display_name}}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            First Name
+          </td>
+          <td>
+            {{userProfile.first_name}}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            Last Name
+          </td>
+          <td>
+            {{userProfile.last_name}}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            Email Id
+          </td>
+          <td>
+            {{userProfile.email}}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            Phone Number
+          </td>
+          <td>
+            {{userProfile.phone_no}}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            Karma Coins
+          </td>
+          <td>
+            {{userProfile.coins}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
