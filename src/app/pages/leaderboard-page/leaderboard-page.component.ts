@@ -8,10 +8,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LeaderboardPageComponent implements OnInit {
 
+  leaderBoard: any;
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getLeaderBoard().subscribe()
+    this.userService.getLeaderBoard().subscribe(resp => this.leaderBoard = resp)
   }
 
 }

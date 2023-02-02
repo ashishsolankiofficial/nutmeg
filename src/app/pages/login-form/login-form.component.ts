@@ -11,26 +11,33 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginFormComponent implements OnInit {
 
   error: string | undefined;
-
+  submitted: boolean = false;
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required)
   })
 
   constructor(private authService: AuthService, private router: Router) { }
 
   loginUser() {
-    let val = this.loginForm.value
-    this.authService.login(val.email, val.password).subscribe(
-      (response) => {
-        this.router.navigateByUrl('');
-      },
-      (error) => {
-        this.error = error;
-      }
-    )
+    this.submitted = true
+    if (this.loginForm.valid) {
+      let val = this.loginForm.value
+      this.authService.login(val.email, val.password).subscribe(
+        (response) => {
+          console.log(response)
+          this.router.navigateByUrl('');
+        },
+        (error) => {
+          this.error = error;
+        }
+      )
+    }
   }
 
+  get formControl() {
+    return this.loginForm.controls;
+  }
 
   ngOnInit(): void {
   }

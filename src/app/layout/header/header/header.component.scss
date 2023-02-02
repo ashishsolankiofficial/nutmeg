@@ -1,9 +1,23 @@
 .navbar-brand{
   padding: 5px;
 }
+.karma-coin-container{
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.karma-coin-image{
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
 @media (min-width: 500px){
   .dropdown{
     position: absolute;
     right: 0px;
+  }
+  .karma-coin-container{
+    position: absolute;
+    right: 100px;
   }
 }

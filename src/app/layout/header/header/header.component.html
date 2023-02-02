@@ -7,6 +7,7 @@
   <a href="" class="navbar-brand">
     <div>Office JAM</div>
   </a>
+  <div class="karma-coin-container"> <img class="karma-coin-image" [src]="coinImg">{{coins}}</div>
   <div class="dropdown">
     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">
@@ -14,8 +15,8 @@
         height="40" class="rounded-circle">
     </button>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="button" (click)="logout()">Profile</button>
-      <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
+      <button class=" dropdown-item" type="button" [routerLink]="['/profile/',user_id]">Profile</button>
+      <button class=" dropdown-item" type="button" (click)="logout()">Logout</button>
     </div>
   </div>
   <div class="collapse navbar-collapse" id="navbarToggler" [ngbCollapse]="isCollapsed">

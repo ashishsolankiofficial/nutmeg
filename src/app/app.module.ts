@@ -15,6 +15,8 @@ import { BetsPageComponent } from './pages/bets-page/bets-page.component';
 import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-page.component';
 import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ProfileFormComponent } from './pages/profile-form/profile-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UpcommingPageComponent,
     BetsPageComponent,
     LeaderboardPageComponent,
-    PlacebetPageComponent
+    PlacebetPageComponent,
+    ProfilePageComponent,
+    ProfileFormComponent,
   ],
   imports: [
     BrowserModule,
