@@ -2,7 +2,7 @@
   <div class="match-detail-card">
     <div class="row profile-header">View Profile</div>
     <div class="row">
-      <div class="profile-edit-link"><a [routerLink]="['../edit/' + userProfile.ext_id]">Edit Profile Info</a></div>
+      <div class="profile-edit-link"><a [routerLink]="['edit']">Edit Profile Info</a></div>
     </div>
     <table class="table border">
       <tbody>
@@ -56,5 +56,8 @@
         </tr>
       </tbody>
     </table>
+    <div class="row">
+      <div><a [routerLink]="['password-reset-page']">Reset Password</a></div>
+    </div>
   </div>
 </div>

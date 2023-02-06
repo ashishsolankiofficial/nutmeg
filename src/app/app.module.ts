@@ -17,6 +17,7 @@ import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.compo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileFormComponent } from './pages/profile-form/profile-form.component';
+import { PasswordresetFormComponent } from './pages/passwordreset-form/passwordreset-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ProfileFormComponent } from './pages/profile-form/profile-form.componen
     PlacebetPageComponent,
     ProfilePageComponent,
     ProfileFormComponent,
+    PasswordresetFormComponent,
   ],
   imports: [
     BrowserModule,
