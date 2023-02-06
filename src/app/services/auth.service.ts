@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
 
 import { User } from '../models/user';
@@ -71,5 +71,9 @@ export class AuthService {
         }
         )
       );
+  }
+
+  resetPassword(old_password: any, password: any, password2: any) {
+    return this.http.post<any>(environment.apiUrl + environment.resetPasswordUrl, { old_password: old_password, password: password, password2: password2 }).pipe(shareReplay())
   }
 }

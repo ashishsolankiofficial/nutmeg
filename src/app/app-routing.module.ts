@@ -6,6 +6,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-page.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PasswordresetFormComponent } from './pages/passwordreset-form/passwordreset-form.component';
 import { PlacebetPageComponent } from './pages/placebet-page/placebet-page.component';
 import { ProfileFormComponent } from './pages/profile-form/profile-form.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
@@ -48,8 +49,13 @@ const routes: Routes = [
 
     },
     {
-      path: 'profile/edit/:ext_id',
+      path: 'profile/:ext_id/edit',
       component: ProfileFormComponent
+
+    },
+    {
+      path: 'profile/:ext_id/password-reset-page',
+      component: PasswordresetFormComponent
 
     }
     ]
