@@ -12,7 +12,7 @@ export const environment = {
   coinsUrl: "payable/coins/",
   upcommingPlayableUrl: "playable/upcomming/",
   matchUrl: "playable/match/",
-  matchBetsUrl: "playable/match-bets/",
+  yourBetsUrl: "playable/your-bets/",
   betUrl: "payable/bet/",
   leaderBoardUrl: "office/leaderboard/",
 };

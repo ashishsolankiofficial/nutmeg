@@ -21,8 +21,19 @@
             {{match.teamB.name}}
           </div>
         </div>
-        <div class="bet-detail-column">
+        <div *ngIf="!match.bet_settled" class="bet-detail-column">
           Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
+        </div>
+        <div *ngIf="match.bet_settled" class="bet-detail-column">
+          <div *ngIf="match.refund">
+            You Were Refunded {{match.ubet.amount}} Karma Coins
+          </div>
+          <div *ngIf="match.ubet.team_ext_id==match.winner_ext_id && !match.refund">
+            You Won {{match.ubet.amount}} Karma Coins
+          </div>
+          <div *ngIf="match.ubet.team_ext_id!=match.winner_ext_id && !match.refund">
+            You Lost {{match.ubet.amount}} Karma Coins
+          </div>
         </div>
       </div>
     </a>

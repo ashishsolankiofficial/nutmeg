@@ -42,7 +42,6 @@ export class PasswordresetFormComponent implements OnInit {
     }
   }
 
-
   get formControl() {
     return this.resetForm.controls;
   }

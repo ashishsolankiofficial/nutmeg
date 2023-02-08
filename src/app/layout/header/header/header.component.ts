@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id = this.userService.getUser()
-    this.userService.getCoins().subscribe((resp: any) => this.coins = resp['coins'])
+    this.userService.coinUpdater.subscribe((resp: any) => this.coins = resp)
+    this.userService.updateCoins()
   }
 
   logout() {
