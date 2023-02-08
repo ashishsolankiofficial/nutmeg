@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { shareReplay } from 'rxjs';
+import { BehaviorSubject, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  coinUpdater: BehaviorSubject<any> = new BehaviorSubject(0)
 
   constructor(private http: HttpClient) { }
 
@@ -24,9 +26,11 @@ export class UserService {
     return this.http.put<any>(environment.apiUrl + environment.userProfileUrl + user_ext_id + '/', data).pipe(shareReplay())
   }
 
-  getCoins() {
+  updateCoins() {
     let user_ext_id = this.getUser()
-    return this.http.get(environment.apiUrl + environment.coinsUrl + user_ext_id).pipe(shareReplay())
+    this.http.get(environment.apiUrl + environment.coinsUrl + user_ext_id).subscribe((resp: any) => {
+      this.coinUpdater.next(resp['coins'])
+    })
   }
 
   getLeaderBoard() {

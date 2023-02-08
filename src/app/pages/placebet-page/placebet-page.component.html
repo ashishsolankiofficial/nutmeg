@@ -1,48 +1,82 @@
-<div class="m-3 bet-detail-card" *ngIf="userBet">
-  Your Bet is On {{userBet.team_name}} for {{userBet.amount}}
-</div>
-<div class="m-3 match-detail-card">
-  <div class="match-detail-row">
-    <div class="match-name">
-      {{match.name}} ({{match.tournament_name}})
-    </div>
-    <div class="match-time">
-      {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
-    </div>
+<div *ngIf="!loading">
+  <div class="m-3 bet-detail-card" *ngIf="userBet">
+    Your Bet is On {{userBet.team_name}} for {{userBet.amount}}
   </div>
-  <div class="bet-amount-row">
-    <div class="bet-choose-text">Choose Bet Amount</div>
-    <select class="form-select bet-amount-select" [(ngModel)]="selectedBet" (change)="updateBet()">
-      <option [ngValue]="(i+1)*50" *ngFor="let item of [].constructor(10); let i = index">
-        {{(i+1)*50}}
-      </option>
-    </select>
-  </div>
-  <div class="team-detail-row">
-    <div class="team-detail-column">
-      <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
-      <div class="team-name">
-        {{match.teamA.name}}
+  <div class="m-3 match-detail-card">
+    <div class="match-detail-row">
+      <div class="match-name">
+        {{match.name}} ({{match.tournament_name}})
       </div>
-      <button class="btn btn-primary" (click)="placeBet(match.teamA)">{{match.teamA.name}} will win</button>
-      <div class=" est-winning-text">Estimated Winnings: {{estWinTeamA | number: '1.0-0'}}
+      <div class="match-time">
+        {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
       </div>
     </div>
-    <div class="versus-text">Vs</div>
-    <div class="team-detail-column">
-      <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
-      <div class="team-name">
-        {{match.teamB.name}}
+    <div *ngIf="!isBetSettlled" class="bet-amount-row">
+      <div class="bet-choose-text">Choose Bet Amount</div>
+      <select class="form-select bet-amount-select" [(ngModel)]="selectedBet" (change)="updateBet()">
+        <option [ngValue]="(i+1)*50" *ngFor="let item of [].constructor(10); let i = index">
+          {{(i+1)*50}}
+        </option>
+      </select>
+      <div *ngIf="lowBalance" class="text-danger">You dont have enough balance</div>
+    </div>
+    <div class="team-detail-row">
+      <div class="team-detail-column">
+        <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
+        <div class="team-name">
+          {{match.teamA.name}}
+        </div>
+        <div *ngIf="!isBetSettlled">
+          <button class="btn btn-primary" [disabled]="lowBalance" (click)="placeBet(match.teamA)">{{match.teamA.name}}
+            will
+            win</button>
+          <div class=" est-winning-text">Estimated Winnings: {{estWinTeamA | number: '1.0-0'}}</div>
+        </div>
       </div>
-      <button class="btn btn-primary" (click)="placeBet(match.teamB)">{{match.teamB.name}} will win</button>
-      <div class="est-winning-text">Estimated Winnings: {{estWinTeamB | number: '1.0-0'}}</div>
+      <div class="versus-text">Vs</div>
+      <div class="team-detail-column">
+        <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
+        <div class="team-name">
+          {{match.teamB.name}}
+        </div>
+        <div *ngIf="!isBetSettlled">
+          <button class="btn btn-primary" [disabled]="lowBalance" (click)="placeBet(match.teamB)">{{match.teamB.name}}
+            will
+            win</button>
+          <div class="est-winning-text">Estimated Winnings: {{estWinTeamB | number: '1.0-0'}}</div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="m-3 bet-detail-card" *ngIf="prevBetExist">
-  <div class="bet-detail-column">
-    <div class="bet-detail-heading">{{match.teamA.name}} Bets</div>
-    <div *ngIf="teamABets.length > 0">
+  <div class="m-3 bet-detail-card" *ngIf="!prevBetExist">
+    No one has placed any bet yet.
+  </div>
+  <div class="m-3 bet-detail-card" *ngIf="prevBetExist">
+    <div class="bet-detail-column">
+      <div class="bet-detail-heading">{{match.teamA.name}} Bets</div>
+      <div *ngIf="teamABets.length > 0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Bet Amount</th>
+              <th>Will Win</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bet of teamABets; let i=index;">
+              <th>{{i + 1}}</th>
+              <td>{{bet.user_name}}</td>
+              <td>{{bet.amount}}</td>
+              <td>{{bet.est_win | number: '1.0-0'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="bet-detail-column">
+      <div class="bet-detail-heading">{{match.teamB.name}} Bets</div>
       <table class="table">
         <thead>
           <tr>
@@ -53,35 +87,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let bet of teamABets; let i=index;">
+          <tr *ngFor="let bet of teamBBets; let i=index;">
             <th>{{i + 1}}</th>
             <td>{{bet.user_name}}</td>
             <td>{{bet.amount}}</td>
-            <td>{{bet.est_win | number: '1.0-0'}}</td>
+            <td>{{bet.est_win | number: '1.0-0' }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="bet-detail-column">
-    <div class="bet-detail-heading">{{match.teamB.name}} Bets</div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Bet Amount</th>
-          <th>Will Win</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bet of teamBBets; let i=index;">
-          <th>{{i + 1}}</th>
-          <td>{{bet.user_name}}</td>
-          <td>{{bet.amount}}</td>
-          <td>{{bet.est_win | number: '1.0-0' }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
