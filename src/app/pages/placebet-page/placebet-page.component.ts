@@ -19,7 +19,6 @@ export class PlacebetPageComponent implements OnInit {
   teamBBets: any;
   userBet: any;
   prevBetExist: boolean = false;
-  isBetSettlled: boolean = false;
   matchId: string | undefined;
   selectedBet: number = 100;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
@@ -44,7 +43,6 @@ export class PlacebetPageComponent implements OnInit {
     }
     )).subscribe((betResp: any) => {
       if (betResp) {
-        this.isBetSettlled = betResp['settled']
         this.betList = betResp['placed_bets']
         this.teamABets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamA.ext_id)
         this.teamBBets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamB.ext_id)
