@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BetService } from 'src/app/services/bet.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-bets-page',
@@ -10,16 +11,39 @@ export class BetsPageComponent implements OnInit {
 
   yourBets: any;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
+  nextUrl: any;
+  previousUrl: any;
+  initUrl: string = environment.apiUrl + environment.yourBetsUrl
+
 
 
   constructor(private betService: BetService) { }
 
-  ngOnInit(): void {
-    this.betService.getYourBetList().subscribe((resp: any) => {
-      this.yourBets = resp
+  getYourBets(url: string) {
+    this.betService.getYourBetList(url).subscribe((resp: any) => {
+      this.yourBets = resp['results']
+      if (resp.next) {
+        this.nextUrl = resp.next;
+      } else {
+        this.nextUrl = undefined
+      }
+      if (resp.previous) {
+        this.previousUrl = resp.previous;
+      } else {
+        this.previousUrl = undefined
+      }
     })
   }
 
+  ngOnInit(): void {
+    this.getYourBets(this.initUrl)
+  }
 
+  fetchPrevious() {
+    this.getYourBets(this.previousUrl);
+  }
+  fetchNext() {
+    this.getYourBets(this.nextUrl);
+  }
 
 }

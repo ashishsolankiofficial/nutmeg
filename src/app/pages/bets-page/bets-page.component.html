@@ -22,7 +22,12 @@
           </div>
         </div>
         <div *ngIf="!match.bet_settled" class="bet-detail-column">
-          Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
+          <div *ngIf="match.refund">
+            You Were Refunded {{match.ubet.amount}} Karma Coins
+          </div>
+          <div *ngIf="!match.refund">
+            Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
+          </div>
         </div>
         <div *ngIf="match.bet_settled" class="bet-detail-column">
           <div *ngIf="match.refund">
@@ -37,5 +42,11 @@
         </div>
       </div>
     </a>
+  </div>
+  <div class="page-buttons-row">
+    <button class="btn btn-primary m-3" *ngIf="previousUrl" (click)="fetchPrevious()">Previous Page
+    </button>
+    <button class="btn btn-primary m-3" *ngIf="nextUrl" (click)="fetchNext()">Next Page
+    </button>
   </div>
 </div>
