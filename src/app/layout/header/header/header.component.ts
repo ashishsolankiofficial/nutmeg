@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   coins: any
   isCollapsed = false;
   coinImg = "../../../assets/images/coin.png"
+  noProfileImg = "../../../assets/images/no-profile-image.png"
   constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {

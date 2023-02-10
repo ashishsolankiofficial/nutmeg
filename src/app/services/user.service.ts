@@ -37,4 +37,8 @@ export class UserService {
     return this.http.get(environment.apiUrl + environment.leaderBoardUrl).pipe(shareReplay())
   }
 
+  getTasks() {
+    return this.http.get(environment.apiUrl + environment.tasksUrl).pipe(shareReplay())
+  }
+
 }
