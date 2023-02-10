@@ -3,12 +3,21 @@
     <div class="row leaderboard-header">Office Leaderboard</div>
     <table class="table border">
       <tbody>
-        <tr *ngFor="let user of leaderBoard">
-          <td class="td-label">
+        <tr *ngFor="let user of taskLeaderBoard">
+          <td>
             {{user.display_name}}
           </td>
           <td>
             {{user.coins}}
+          </td>
+          <td>
+            {{user.task}}
+          </td>
+          <td>
+            {{user.vs_display_name}}
+          </td>
+          <td>
+            {{user.vs_coins}}
           </td>
         </tr>
       </tbody>

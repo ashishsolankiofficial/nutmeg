@@ -15,6 +15,7 @@ export const environment = {
   yourBetsUrl: "playable/your-bets/",
   betUrl: "payable/bet/",
   leaderBoardUrl: "office/leaderboard/",
+  tasksUrl: "office/tasks/"
 };
 
 /*
