@@ -14,8 +14,8 @@ export class BetService {
     return this.http.get(environment.apiUrl + environment.matchUrl + match_id).pipe(shareReplay())
   }
 
-  getYourBetList() {
-    return this.http.get(environment.apiUrl + environment.yourBetsUrl).pipe(shareReplay())
+  getYourBetList(url: string) {
+    return this.http.get(url).pipe(shareReplay())
   }
 
   getBet(betId: string | undefined) {
