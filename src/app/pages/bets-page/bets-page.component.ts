@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BetsPageComponent implements OnInit {
 
+  loading: boolean = true;
   yourBets: any;
   defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
   nextUrl: any;
@@ -20,6 +21,7 @@ export class BetsPageComponent implements OnInit {
   constructor(private betService: BetService) { }
 
   getYourBets(url: string) {
+    this.loading = true;
     this.betService.getYourBetList(url).subscribe((resp: any) => {
       this.yourBets = resp['results']
       if (resp.next) {
@@ -32,6 +34,7 @@ export class BetsPageComponent implements OnInit {
       } else {
         this.previousUrl = undefined
       }
+      this.loading = false;
     })
   }
 
