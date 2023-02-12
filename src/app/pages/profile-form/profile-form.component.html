@@ -49,18 +49,6 @@
           </div>
         </div>
       </div>
-      <div class="row form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="phone_no">Phone Number*</label>
-            <input maxlength="10" minlength="10" type="number" class="form-control" id="phone_no" name="phone_no"
-              #phone_no="ngModel" [ngModel]="userProfile.phone_no" required>
-            <div *ngIf="phone_no.invalid && (phone_no.touched|| userProfileForm.submitted)" class="text-error">Enter a
-              valid Phone number</div>
-            <div *ngIf="error?.error.phone_no" class="text-error">{{error.error.phone_no}}</div>
-          </div>
-        </div>
-      </div>
       <button type="submit" class="btn btn-success m-2">Submit</button>
       <button type="submit" class="btn btn-danger m-2" [routerLink]="['../' + userProfile.ext_id]">Back</button>
     </form>

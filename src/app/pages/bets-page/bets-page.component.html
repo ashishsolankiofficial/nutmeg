@@ -1,52 +1,59 @@
-<div class="m-3">
-  <div *ngFor="let match of yourBets">
-    <a class="card-link" [routerLink]="['/palcebet/' ,match.ext_id]">
-      <div class="match-detail-card">
-        <div class="match-detail-column">
-          <div class="match-name">
-            {{match.name}}({{match.tournament_name}})
-          </div>
-          <div class="match-time">
-            {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
-          </div>
-        </div>
-        <div class="team-detail-column">
-          <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
-          <div class="team-name">
-            {{match.teamA.name}}
-          </div>
-          <div class="team-vs-text">Vs</div>
-          <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
-          <div class="team-name">
-            {{match.teamB.name}}
-          </div>
-        </div>
-        <div *ngIf="!match.bet_settled" class="bet-detail-column">
-          <div *ngIf="match.refund">
-            You Were Refunded {{match.ubet.amount}} Karma Coins
-          </div>
-          <div *ngIf="!match.refund">
-            Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
-          </div>
-        </div>
-        <div *ngIf="match.bet_settled" class="bet-detail-column">
-          <div *ngIf="match.refund">
-            You Were Refunded {{match.ubet.amount}} Karma Coins
-          </div>
-          <div *ngIf="match.ubet.team_ext_id==match.winner_ext_id && !match.refund">
-            You Won {{match.ubet.amount}} Karma Coins
-          </div>
-          <div *ngIf="match.ubet.team_ext_id!=match.winner_ext_id && !match.refund">
-            You Lost {{match.ubet.amount}} Karma Coins
-          </div>
-        </div>
-      </div>
-    </a>
+<div *ngIf="!loading">
+  <div *ngIf="!(yourBets?.length > 0)">
+    <div class="no-bet-info">
+      No Bet Placed
+    </div>
   </div>
-  <div class="page-buttons-row">
-    <button class="btn btn-primary m-3" *ngIf="previousUrl" (click)="fetchPrevious()">Previous Page
-    </button>
-    <button class="btn btn-primary m-3" *ngIf="nextUrl" (click)="fetchNext()">Next Page
-    </button>
+  <div *ngIf="(yourBets?.length > 0)">
+    <div *ngFor="let match of yourBets">
+      <a class="card-link" [routerLink]="['/palcebet/' ,match.ext_id]">
+        <div class="match-detail-card">
+          <div class="match-detail-column">
+            <div class="match-name">
+              {{match.name}}({{match.tournament_name}})
+            </div>
+            <div class="match-time">
+              {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
+            </div>
+          </div>
+          <div class="team-detail-column">
+            <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
+            <div class="team-name">
+              {{match.teamA.name}}
+            </div>
+            <div class="team-vs-text">Vs</div>
+            <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
+            <div class="team-name">
+              {{match.teamB.name}}
+            </div>
+          </div>
+          <div *ngIf="!match.bet_settled" class="bet-detail-column">
+            <div *ngIf="match.refund">
+              You Were Refunded {{match.ubet.amount}} Karma Coins
+            </div>
+            <div *ngIf="!match.refund">
+              Your Bet is On {{match.ubet.team_name}} for {{match.ubet.amount}}
+            </div>
+          </div>
+          <div *ngIf="match.bet_settled" class="bet-detail-column">
+            <div *ngIf="match.refund">
+              You Were Refunded {{match.ubet.amount}} Karma Coins
+            </div>
+            <div *ngIf="match.ubet.team_ext_id==match.winner_ext_id && !match.refund">
+              You Won {{match.ubet.amount}} Karma Coins
+            </div>
+            <div *ngIf="match.ubet.team_ext_id!=match.winner_ext_id && !match.refund">
+              You Lost {{match.ubet.amount}} Karma Coins
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="page-buttons-row">
+      <button class="btn btn-primary m-3" *ngIf="previousUrl" (click)="fetchPrevious()">Previous Page
+      </button>
+      <button class="btn btn-primary m-3" *ngIf="nextUrl" (click)="fetchNext()">Next Page
+      </button>
+    </div>
   </div>
 </div>
