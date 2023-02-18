@@ -11,9 +11,15 @@
         {{match.match_start_time |date }} {{match.match_start_time |date:"HH:mm a" }}
       </div>
     </div>
-    <div *ngIf="match.winner" class="bet-amount-row">Winner is {{match.winner}}, Ask admin to distribute the rewards
+    <div *ngIf="betDisabled" class="bet-amount-row">
+      <div *ngIf="match.winner">
+        Winner is {{match.winner}}, Ask admin to distribute the rewards.
+      </div>
+      <div *ngIf="!match.winner">
+        Time Expired
+      </div>
     </div>
-    <div *ngIf="!match.winner" class="bet-amount-row">
+    <div *ngIf="!betDisabled" class="bet-amount-row">
       <div class="bet-choose-text">Choose Bet Amount</div>
       <select class="form-select bet-amount-select" [(ngModel)]="selectedBet" (change)="updateBet()">
         <option [ngValue]="(i+1)*50" *ngFor="let item of [].constructor(10); let i = index">
@@ -28,7 +34,7 @@
         <div class="team-name">
           {{match.teamA.name}}
         </div>
-        <div *ngIf="!match.winner">
+        <div *ngIf="!betDisabled">
           <button class="btn btn-primary" [disabled]="lowBalance" (click)="placeBet(match.teamA)">{{match.teamA.name}}
             will
             win</button>
@@ -41,7 +47,7 @@
         <div class="team-name">
           {{match.teamB.name}}
         </div>
-        <div *ngIf="!match.winner">
+        <div *ngIf="!betDisabled">
           <button class="btn btn-primary" [disabled]="lowBalance" (click)="placeBet(match.teamB)">{{match.teamB.name}}
             will
             win</button>

@@ -40,7 +40,7 @@
               You Were Refunded {{match.ubet.amount}} Karma Coins
             </div>
             <div *ngIf="match.ubet.team_ext_id==match.winner_ext_id && !match.refund">
-              You Won {{match.ubet.amount}} Karma Coins
+              You Won {{match.win_amount}} Karma Coins
             </div>
             <div *ngIf="match.ubet.team_ext_id!=match.winner_ext_id && !match.refund">
               You Lost {{match.ubet.amount}} Karma Coins
