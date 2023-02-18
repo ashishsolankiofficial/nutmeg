@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class PlacebetPageComponent implements OnInit {
 
   loading: boolean = true;
+  now: any;
   match: any;
   betId: string | undefined;
   betList: any;
@@ -26,6 +27,7 @@ export class PlacebetPageComponent implements OnInit {
   estWinTeamB: number = 0
   coinBalance: number = 0
   lowBalance: boolean = false;
+  betDisabled: boolean = false;
 
   constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
@@ -34,6 +36,8 @@ export class PlacebetPageComponent implements OnInit {
     this.userService.coinUpdater.subscribe((resp: any) => this.coinBalance = resp)
     this.betService.getMatch(this.matchId).pipe(switchMap((resp: any) => {
       this.match = resp
+      this.betDisabled = this.match.winner ? true : false;
+      this.checkTimeConstraint()
       this.betId = this.match.bet_ext_id
       if (this.betId) {
         return this.betService.getBet(this.betId)
@@ -57,23 +61,26 @@ export class PlacebetPageComponent implements OnInit {
   }
 
   placeBet(team: any) {
-    let bet_details = {
-      'match': this.matchId,
-      'placed_bets': [{
-        'team': team.ext_id,
-        'amount': this.selectedBet,
-      }]
-    }
-    if (this.prevBetExist) {
-      this.betService.placeBet(bet_details, this.betId).subscribe(resp => {
-        this.userService.updateCoins()
-        this.router.navigate(['bets'])
-      })
-    } else {
-      this.betService.placeBet(bet_details).subscribe(resp => {
-        this.userService.updateCoins()
-        this.router.navigate(['bets'])
-      })
+    this.checkTimeConstraint()
+    if (!this.betDisabled) {
+      let bet_details = {
+        'match': this.matchId,
+        'placed_bets': [{
+          'team': team.ext_id,
+          'amount': this.selectedBet,
+        }]
+      }
+      if (this.prevBetExist) {
+        this.betService.placeBet(bet_details, this.betId).subscribe(resp => {
+          this.userService.updateCoins()
+          this.router.navigate(['bets'])
+        })
+      } else {
+        this.betService.placeBet(bet_details).subscribe(resp => {
+          this.userService.updateCoins()
+          this.router.navigate(['bets'])
+        })
+      }
     }
   }
 
@@ -123,5 +130,11 @@ export class PlacebetPageComponent implements OnInit {
   updateBet() {
     this.calcEstimatedWinnings()
     this.checkCoinBalance()
+  }
+
+  checkTimeConstraint() {
+    if (new Date() > new Date(this.match.match_start_time)) {
+      this.betDisabled = true
+    }
   }
 }
