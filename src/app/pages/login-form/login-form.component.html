@@ -6,7 +6,7 @@
   <div class="col form-field">
     <label for="emailfield">Email</label>
     <input type="email" id="emailfield" class="form-control" formControlName="email">
-    <div *ngIf="submitted && formControl.email.errors" class="text-danger">
+    <div *ngIf="formControl.email.touched && formControl.email.errors" class="text-danger">
       <div *ngIf="formControl.email.errors['email']">Email must be valid.</div>
       <div *ngIf="formControl.email.errors['required']">Email is required.</div>
     </div>
@@ -15,7 +15,7 @@
     <label for="passwordfield">Password</label>
     <input type="password" id="passwordfield" class="form-control" formControlName="password">
   </div>
-  <div *ngIf="submitted && formControl.password.errors" class="text-danger">
+  <div *ngIf="formControl.password.touched && formControl.password.errors" class="text-danger">
     <div *ngIf="formControl.password.errors['required']">Password is required.</div>
   </div>
   <div class="col pt-4">
