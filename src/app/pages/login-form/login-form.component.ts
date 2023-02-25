@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   loginUser() {
-    this.submitted = true
+    this.submitted = true;
     if (this.loginForm.valid) {
       let val = this.loginForm.value
       this.authService.login(val.email, val.password).subscribe(
