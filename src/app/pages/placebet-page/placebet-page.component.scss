@@ -1,3 +1,11 @@
+.bet-detail-card{
+    background-color: #f6f6f6;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
 .match-detail-card{
     background-color: #f6f6f6;
     padding: 40px;
@@ -17,31 +25,6 @@
     font-size: 14px;
 }
 
-.team-detail-row{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-}
-
-
-.versus-text{
-    font-size: 30px;
-    font-weight: 500px;
-}
-
-.team-image{
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    border: 1px solid #aaaaaa;
-}
-
-.team-name{
-    margin: 20px 0px;
-    font-weight: 600;
-}
-
 .bet-amount-row{
     text-align: center;
 }
@@ -57,17 +40,32 @@
     margin: auto;
 }
 
-.est-winning-text{
-    font-size: 14px;
-}
-
-
-.bet-detail-card{
-    background-color: #f6f6f6;
-    padding: 40px;
-    border-radius: 20px;
+.team-detail-row{
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.team-image{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 1px solid #aaaaaa;
+}
+
+.team-name{
+    margin: 20px 0px;
+    font-weight: 600;
+}
+
+.versus-text{
+    font-size: 30px;
+    font-weight: 500px;
+}
+
+.est-winning-text{
+    font-size: 14px;
 }
 
 .bet-detail-heading{

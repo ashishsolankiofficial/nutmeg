@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/user.service';
 export class LeaderboardPageComponent implements OnInit {
 
   leaderBoard: any;
-  inverseLeaderBoard: any
   taskLeaderBoard: any = []
   tasks: any;
 

@@ -22,43 +22,15 @@ export class PlacebetPageComponent implements OnInit {
   prevBetExist: boolean = false;
   matchId: string | undefined;
   selectedBet: number = 100;
-  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
   estWinTeamA: number = 0
   estWinTeamB: number = 0
   coinBalance: number = 0
   lowBalance: boolean = false;
   betDisabled: boolean = false;
 
-  constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
 
-  ngOnInit(): void {
-    this.matchId = this.route.snapshot.paramMap.get('ext_id') || '';
-    this.userService.coinUpdater.subscribe((resp: any) => this.coinBalance = resp)
-    this.betService.getMatch(this.matchId).pipe(switchMap((resp: any) => {
-      this.match = resp
-      this.betDisabled = this.match.winner ? true : false;
-      this.checkTimeConstraint()
-      this.betId = this.match.bet_ext_id
-      if (this.betId) {
-        return this.betService.getBet(this.betId)
-      } else {
-        return of(null)
-      }
-    }
-    )).subscribe((betResp: any) => {
-      if (betResp) {
-        this.betList = betResp['placed_bets']
-        this.teamABets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamA.ext_id)
-        this.teamBBets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamB.ext_id)
-        this.userBet = this.betList.filter((u: any) => u.user_id == this.userService.getUser())[0]
-        this.prevBetExist = true;
-        this.calcEstimatedWinnings()
-        this.calcAllWinnings()
-        this.checkCoinBalance()
-      }
-      this.loading = false
-    })
-  }
+  constructor(private betService: BetService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   placeBet(team: any) {
     this.checkTimeConstraint()
@@ -137,4 +109,34 @@ export class PlacebetPageComponent implements OnInit {
       this.betDisabled = true
     }
   }
+
+  ngOnInit(): void {
+    this.matchId = this.route.snapshot.paramMap.get('ext_id') || '';
+    this.userService.coinUpdater.subscribe((resp: any) => this.coinBalance = resp)
+    this.betService.getMatch(this.matchId).pipe(switchMap((resp: any) => {
+      this.match = resp
+      this.betDisabled = this.match.winner ? true : false;
+      this.checkTimeConstraint()
+      this.betId = this.match.bet_ext_id
+      if (this.betId) {
+        return this.betService.getBet(this.betId)
+      } else {
+        return of(null)
+      }
+    }
+    )).subscribe((betResp: any) => {
+      if (betResp) {
+        this.betList = betResp['placed_bets']
+        this.teamABets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamA.ext_id)
+        this.teamBBets = this.betList.filter((u: any) => u.team_ext_id == this.match.teamB.ext_id)
+        this.userBet = this.betList.filter((u: any) => u.user_id == this.userService.getUser())[0]
+        this.prevBetExist = true;
+        this.calcEstimatedWinnings()
+        this.calcAllWinnings()
+        this.checkCoinBalance()
+      }
+      this.loading = false
+    })
+  }
+
 }

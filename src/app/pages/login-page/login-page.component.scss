@@ -9,3 +9,18 @@
     display: flex;
     justify-content: center;
 }
+
+.demo-login-card-row {
+    margin-top: 20px;
+    justify-content: center; 
+  }
+  
+  .demo-login-card {
+    border: 1px grey solid;
+    border-radius: 5px;
+    padding: 5px;
+    width: 200px;
+    align-items: center;
+    font-size: 12px;
+    text-align: left;
+  }

@@ -29,7 +29,7 @@
       <div *ngIf="lowBalance" class="text-danger">You dont have enough balance</div>
     </div>
     <div class="team-detail-row">
-      <div class="team-detail-column">
+      <div>
         <img class="team-image" [src]="match.teamA.image_url!= null ? match.teamA.image_url : defaultTeamImg">
         <div class="team-name">
           {{match.teamA.name}}
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="versus-text">Vs</div>
-      <div class="team-detail-column">
+      <div>
         <img class="team-image" [src]="match.teamB.image_url!= null ? match.teamB.image_url : defaultTeamImg">
         <div class="team-name">
           {{match.teamB.name}}
