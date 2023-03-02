@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

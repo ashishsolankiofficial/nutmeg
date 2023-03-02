@@ -11,12 +11,11 @@ export class BetsPageComponent implements OnInit {
 
   loading: boolean = true;
   yourBets: any;
-  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
   nextUrl: any;
   previousUrl: any;
   initUrl: string = environment.apiUrl + environment.yourBetsUrl
 
-
+  defaultTeamImg: string = "https://www.freeiconspng.com/uploads/no-image-icon-6.png"
 
   constructor(private betService: BetService) { }
 
@@ -38,15 +37,15 @@ export class BetsPageComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.getYourBets(this.initUrl)
-  }
-
   fetchPrevious() {
     this.getYourBets(this.previousUrl);
   }
   fetchNext() {
     this.getYourBets(this.nextUrl);
+  }
+
+  ngOnInit(): void {
+    this.getYourBets(this.initUrl)
   }
 
 }

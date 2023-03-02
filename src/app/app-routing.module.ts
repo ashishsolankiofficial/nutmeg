@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { BetsPageComponent } from './pages/bets-page/bets-page.component';
@@ -41,22 +41,18 @@ const routes: Routes = [
     {
       path: 'palcebet/:ext_id',
       component: PlacebetPageComponent
-
     },
     {
       path: 'profile/:ext_id',
       component: ProfilePageComponent
-
     },
     {
       path: 'profile/:ext_id/edit',
       component: ProfileFormComponent
-
     },
     {
       path: 'profile/:ext_id/password-reset-page',
       component: PasswordresetFormComponent
-
     }
     ]
   },
