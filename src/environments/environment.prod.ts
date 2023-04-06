@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: "http://13.126.165.111/api/",
+  // apiUrl: "http://13.126.165.111/api/",
+  apiUrl: "http://localhost/oj/api/",
   loginUrl: "auth/login/",
   refreshUrl: "auth/token-refresh/",
   resetPasswordUrl: "user/reset-password/",
